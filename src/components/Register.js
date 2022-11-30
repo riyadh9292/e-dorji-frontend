@@ -15,7 +15,7 @@ import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import Checkbox from "@mui/material/Checkbox";
 const Signup = () => {
-  const paperStyle = { padding: "30px 20px", width: 300, margin: "20px auto" };
+  const paperStyle = { padding: "30px 20px", width: 480, margin: "20px auto" };
   const headerStyle = { margin: 0 };
   const avatarStyle = { backgroundColor: "#1bbd7e" };
   const marginTop = { marginTop: 5 };
@@ -26,8 +26,10 @@ const Signup = () => {
           <Avatar style={avatarStyle}>
             <AddCircleOutlineOutlinedIcon />
           </Avatar>
-          <h2 style={headerStyle}>Sign Up</h2>
-          <Typography variant="caption" gutterBottom>
+          <h2 style={headerStyle} className="py-5 font-bold text-2xl">
+            Sign Up
+          </h2>
+          <Typography className="text-blue-500" variant="caption" gutterBottom>
             Please fill this form to create an account !
           </Typography>
         </Grid>
@@ -64,13 +66,15 @@ const Signup = () => {
             label="Confirm Password"
             placeholder="Confirm your password"
           />
-          <FormControlLabel
-            control={<Checkbox name="checkedA" />}
-            label="I accept the terms and conditions."
-          />
-          <Button type="submit" variant="contained" color="primary">
-            Sign up
-          </Button>
+          <div className="py-2">
+            <FormControlLabel
+              control={<Checkbox name="checkedA" />}
+              label="I accept the terms and conditions."
+            />
+            <Button type="submit" variant="contained" color="primary">
+              Sign up
+            </Button>
+          </div>
         </form>
       </Paper>
     </Grid>

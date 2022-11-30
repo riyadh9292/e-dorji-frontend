@@ -18,9 +18,22 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
+import Modal from "@mui/material/Modal";
 import Signup from "./Register";
+import Login from "./Login";
 
 const drawerWidth = 240;
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -87,9 +100,9 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-export default function MiniDrawer() {
+export default function MiniDrawer({ setOpenLogin, setOpenRegister }) {
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -98,6 +111,8 @@ export default function MiniDrawer() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  // console.log(openLogin, "open", "openRegister", openRegister);
 
   return (
     <>
@@ -122,14 +137,28 @@ export default function MiniDrawer() {
                 E-Dorji
               </Typography>
               <div className="flex items-center gap-10">
-                <span>Login</span>
-                <span>Registration</span>
+                <span
+                  className="cursor-pointer"
+                  onClick={() => setOpenLogin(true)}
+                >
+                  Login
+                </span>
+                <span
+                  className="cursor-pointer"
+                  onClick={() => setOpenRegister(true)}
+                >
+                  Registration
+                </span>
               </div>
             </div>
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>
-          <DrawerHeader>
+          <DrawerHeader className="w-full relative flex  justify-between">
+            <div className="w-16 absolute left-0">
+              <img src="assests/images/17684851.jpg" />
+            </div>
+
             <IconButton onClick={handleDrawerClose}>
               {theme.direction === "rtl" ? (
                 <ChevronRightIcon />
@@ -140,7 +169,13 @@ export default function MiniDrawer() {
           </DrawerHeader>
           <Divider />
           <List>
-            {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
+            {[
+              "Designs",
+              // "Starred",
+              "See Out Clients",
+              "Success Story",
+              "Meet fashion experts",
+            ].map((text, index) => (
               <ListItem key={text} disablePadding sx={{ display: "block" }}>
                 <ListItemButton
                   sx={{
@@ -223,7 +258,6 @@ export default function MiniDrawer() {
           </Typography>
         </Box>
       </Box>
-      <Signup />
     </>
   );
 }
