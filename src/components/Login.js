@@ -23,7 +23,7 @@ const Login = () => {
   const btnstyle = { margin: "8px 0" };
   return (
     <Grid className="w-full">
-      <Paper elevation={10} style={paperStyle}>
+      <Paper className="shadow-none" style={paperStyle}>
         <Grid align="center">
           <Avatar style={avatarStyle}>
             <LockOutlined />

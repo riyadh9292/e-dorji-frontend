@@ -21,6 +21,8 @@ import MailIcon from "@mui/icons-material/Mail";
 import Modal from "@mui/material/Modal";
 import Signup from "./Register";
 import Login from "./Login";
+import SimpleSlider from "./Carousel";
+import RecipeReviewCard from "./CustomerCard";
 
 const drawerWidth = 240;
 const style = {
@@ -226,7 +228,26 @@ export default function MiniDrawer({ setOpenLogin, setOpenRegister }) {
         </Drawer>
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
           <DrawerHeader />
-          <Typography paragraph>
+          <div className="flex gap-10">
+            <SimpleSlider />
+            <div>
+              <h1 className="text-[40px] text-[#1976d2] font-bold tracking-wide capitalize pb-12">
+                OUR DELIGHTFUL CLIENTS
+              </h1>
+              <div className="grid grid-cols-2 gap-4 ">
+                <RecipeReviewCard />
+                <RecipeReviewCard imagePath="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjjyVki1u4VhBIzZIRtAucnVBuDUvivWuBSQ&usqp=CAU" />
+              </div>
+            </div>
+          </div>
+          <div className="w-full grid grid-cols-4 pt-10">
+            <RecipeReviewCard imagePath="https://blog.hubspot.com/hs-fs/hubfs/custoemr%20success%20manager.jpg?width=595&height=400&name=custoemr%20success%20manager.jpg" />
+            <RecipeReviewCard imagePath="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtzr8CUUjwt9NlU511deSB1qYqNFPCgNvrOCPvNYVVMPnUrGkR6CuMG8XwbCIqmqIEQh8&usqp=CAU" />
+            <RecipeReviewCard imagePath="https://blog.hubspot.com/hs-fs/hubfs/custoemr%20success%20manager.jpg?width=595&height=400&name=custoemr%20success%20manager.jpg" />
+            <RecipeReviewCard imagePath="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtzr8CUUjwt9NlU511deSB1qYqNFPCgNvrOCPvNYVVMPnUrGkR6CuMG8XwbCIqmqIEQh8&usqp=CAU" />
+          </div>
+
+          {/* <Typography paragraph>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
             dolor purus non enim praesent elementum facilisis leo vel. Risus at
@@ -255,7 +276,7 @@ export default function MiniDrawer({ setOpenLogin, setOpenRegister }) {
             euismod elementum nisi quis eleifend. Commodo viverra maecenas
             accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam
             ultrices sagittis orci a.
-          </Typography>
+          </Typography> */}
         </Box>
       </Box>
     </>

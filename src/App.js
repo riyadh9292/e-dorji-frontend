@@ -16,9 +16,9 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: "600px",
   bgcolor: "background.paper",
-  border: "2px solid #eeeeee",
+  // border: "2px solid #eeeeee",
   borderRadius: "20px",
-  boxShadow: 24,
+  // boxShadow: 24,
   p: 4,
 };
 

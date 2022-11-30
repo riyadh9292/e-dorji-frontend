@@ -21,7 +21,7 @@ const Signup = () => {
   const marginTop = { marginTop: 5 };
   return (
     <Grid>
-      <Paper elevation={20} style={paperStyle}>
+      <Paper style={paperStyle}>
         <Grid align="center">
           <Avatar style={avatarStyle}>
             <AddCircleOutlineOutlinedIcon />
