@@ -1,6 +1,5 @@
 import * as React from "react";
 import { styled, useTheme } from "@mui/material/styles";
-import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
 import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -18,24 +17,26 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
-import Modal from "@mui/material/Modal";
+
 import Signup from "./Register";
 import Login from "./Login";
-import SimpleSlider from "./Carousel";
-import RecipeReviewCard from "./CustomerCard";
+
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import { ImCross } from "react-icons/im";
 
 const drawerWidth = 240;
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
+// const style = {
+//   position: "absolute",
+//   top: "50%",
+//   left: "50%",
+//   transform: "translate(-50%, -50%)",
+//   width: 400,
+//   bgcolor: "background.paper",
+//   border: "2px solid #000",
+//   boxShadow: 24,
+//   p: 4,
+// };
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -102,9 +103,24 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-export default function MiniDrawer({ setOpenLogin, setOpenRegister }) {
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "600px",
+  bgcolor: "background.paper",
+  // border: "2px solid #eeeeee",
+  borderRadius: "20px",
+  // boxShadow: 24,
+  p: 4,
+};
+
+export default function MiniDrawer({ children }) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
+  const [openLogin, setOpenLogin] = React.useState(false);
+  const [openRegister, setOpenRegister] = React.useState(false);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -118,6 +134,40 @@ export default function MiniDrawer({ setOpenLogin, setOpenRegister }) {
 
   return (
     <>
+      <Modal
+        open={openRegister}
+        onClose={() => {
+          setOpenRegister(false);
+        }}
+        sx={{ backgroundColor: "rgba(0, 0, 0, 0.25)" }}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <ImCross
+            onClick={() => setOpenRegister(false)}
+            className="text-red-600 absolute right-8 cursor-pointer"
+          />
+          <Signup />
+        </Box>
+      </Modal>
+
+      <Modal
+        open={openLogin}
+        onClose={() => setOpenLogin(false)}
+        onBackdropClick={() => setOpenLogin(false)}
+        sx={{ backgroundColor: "rgba(0, 0, 0, 0.25)" }}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <ImCross
+            onClick={() => setOpenLogin(false)}
+            className="text-red-600 absolute right-8 cursor-pointer"
+          />
+          <Login />
+        </Box>
+      </Modal>
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
         <AppBar position="fixed" open={open}>
@@ -136,7 +186,7 @@ export default function MiniDrawer({ setOpenLogin, setOpenRegister }) {
             </IconButton>
             <div className="w-full flex items-center justify-between">
               <Typography variant="h6" noWrap component="div">
-                E-Dorji
+                E-Doiji
               </Typography>
               <div className="flex items-center gap-10">
                 <span
@@ -228,55 +278,7 @@ export default function MiniDrawer({ setOpenLogin, setOpenRegister }) {
         </Drawer>
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
           <DrawerHeader />
-          <div className="flex gap-10">
-            <SimpleSlider />
-            <div>
-              <h1 className="text-[40px] text-[#1976d2] font-bold tracking-wide capitalize pb-12">
-                OUR DELIGHTFUL CLIENTS
-              </h1>
-              <div className="grid grid-cols-2 gap-4 ">
-                <RecipeReviewCard />
-                <RecipeReviewCard imagePath="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjjyVki1u4VhBIzZIRtAucnVBuDUvivWuBSQ&usqp=CAU" />
-              </div>
-            </div>
-          </div>
-          <div className="w-full grid grid-cols-4 pt-10">
-            <RecipeReviewCard imagePath="https://blog.hubspot.com/hs-fs/hubfs/custoemr%20success%20manager.jpg?width=595&height=400&name=custoemr%20success%20manager.jpg" />
-            <RecipeReviewCard imagePath="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtzr8CUUjwt9NlU511deSB1qYqNFPCgNvrOCPvNYVVMPnUrGkR6CuMG8XwbCIqmqIEQh8&usqp=CAU" />
-            <RecipeReviewCard imagePath="https://blog.hubspot.com/hs-fs/hubfs/custoemr%20success%20manager.jpg?width=595&height=400&name=custoemr%20success%20manager.jpg" />
-            <RecipeReviewCard imagePath="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtzr8CUUjwt9NlU511deSB1qYqNFPCgNvrOCPvNYVVMPnUrGkR6CuMG8XwbCIqmqIEQh8&usqp=CAU" />
-          </div>
-
-          {/* <Typography paragraph>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
-            dolor purus non enim praesent elementum facilisis leo vel. Risus at
-            ultrices mi tempus imperdiet. Semper risus in hendrerit gravida
-            rutrum quisque non tellus. Convallis convallis tellus id interdum
-            velit laoreet id donec ultrices. Odio morbi quis commodo odio aenean
-            sed adipiscing. Amet nisl suscipit adipiscing bibendum est ultricies
-            integer quis. Cursus euismod quis viverra nibh cras. Metus vulputate
-            eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo
-            quis imperdiet massa tincidunt. Cras tincidunt lobortis feugiat
-            vivamus at augue. At augue eget arcu dictum varius duis at
-            consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
-            donec massa sapien faucibus et molestie ac.
-          </Typography>
-          <Typography paragraph>
-            Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
-            ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar
-            elementum integer enim neque volutpat ac tincidunt. Ornare
-            suspendisse sed nisi lacus sed viverra tellus. Purus sit amet
-            volutpat consequat mauris. Elementum eu facilisis sed odio morbi.
-            Euismod lacinia at quis risus sed vulputate odio. Morbi tincidunt
-            ornare massa eget egestas purus viverra accumsan in. In hendrerit
-            gravida rutrum quisque non tellus orci ac. Pellentesque nec nam
-            aliquam sem et tortor. Habitant morbi tristique senectus et.
-            Adipiscing elit duis tristique sollicitudin nibh sit. Ornare aenean
-            euismod elementum nisi quis eleifend. Commodo viverra maecenas
-            accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam
-            ultrices sagittis orci a.
-          </Typography> */}
+          {children}
         </Box>
       </Box>
     </>
