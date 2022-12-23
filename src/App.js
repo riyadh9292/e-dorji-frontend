@@ -19,7 +19,7 @@ function App() {
           <Route path="/experts" element={<Experts />} />
           <Route path="/designs" element={<Designs />} />
           <Route path="/service-providers" element={<ServiceProviders />} />
-          {/* <Route path="/checkout" element={<Checkout />} /> */}
+          <Route path="/checkout" element={<Checkout />} />
           {/* <Route path="/characters/:id" element={<Character />} /> */}
           <Route path="*" element={<NotFound />} />
         </Routes>

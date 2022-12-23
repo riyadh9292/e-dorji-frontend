@@ -17,6 +17,9 @@ import Grid from "@mui/material/Grid";
 import AddressForm from "../components/checkout/Address";
 import Payment from "../components/checkout/Payment";
 import Review from "../components/checkout/Review";
+import PrimarySearchAppBar from "../components/Header";
+
+import Footer from "../components/Footer";
 
 const styles = (theme) => ({
   appBar: {
@@ -96,68 +99,75 @@ class Checkout extends React.Component {
   render() {
     const { classes } = this.props;
     const { activeStep } = this.state;
-    console.log(activeStep);
+    console.log(classes);
     return (
-      <React.Fragment>
-        <CssBaseline />
-
-        <main className={classes.layout}>
-          <Paper className={classes.paper}>
-            <Typography component="h1" variant="h4" align="center">
-              Checkout
-            </Typography>
-            <Stepper activeStep={activeStep} className={classes.stepper}>
-              {steps.map((label) => (
-                <Step key={label}>
-                  <StepLabel>{label}</StepLabel>
-                </Step>
-              ))}
-            </Stepper>
+      <>
+        <div className="App">
+          <PrimarySearchAppBar>
             <React.Fragment>
-              {activeStep === steps.length ? (
-                <React.Fragment>
-                  <Typography variant="h5" gutterBottom>
-                    Thank you for your order.
+              <CssBaseline />
+
+              <main className={""}>
+                <Paper className={""}>
+                  <Typography component="h1" variant="h4" align="center">
+                    Checkout
                   </Typography>
-                  <Typography variant="subtitle1">
-                    Your order number is #2001539. We have emailed your order
-                    confirmation, and will send you an update when your order
-                    has shipped.
-                  </Typography>
-                </React.Fragment>
-              ) : (
-                <React.Fragment>
-                  {getStepContent(activeStep)}
-                  <div className={classes.buttons}>
-                    {activeStep !== 0 && (
-                      <Button
-                        onClick={this.handleBack}
-                        className={classes.button}
-                      >
-                        Back
-                      </Button>
+                  <Stepper activeStep={activeStep} className={""}>
+                    {steps.map((label) => (
+                      <Step key={label}>
+                        <StepLabel>{label}</StepLabel>
+                      </Step>
+                    ))}
+                  </Stepper>
+                  <React.Fragment>
+                    {activeStep === steps.length ? (
+                      <React.Fragment>
+                        <Typography variant="h5" gutterBottom>
+                          Thank you for your order.
+                        </Typography>
+                        <Typography variant="subtitle1">
+                          Your order number is #2001539. We have emailed your
+                          order confirmation, and will send you an update when
+                          your order has shipped.
+                        </Typography>
+                      </React.Fragment>
+                    ) : (
+                      <React.Fragment>
+                        {getStepContent(activeStep)}
+                        <div className={""}>
+                          {activeStep !== 0 && (
+                            <Button onClick={this.handleBack} className={""}>
+                              Back
+                            </Button>
+                          )}
+                          <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={this.handleNext}
+                            className={""}
+                          >
+                            {activeStep === steps.length - 1
+                              ? "Place order"
+                              : "Next"}
+                          </Button>
+                        </div>
+                      </React.Fragment>
                     )}
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      onClick={this.handleNext}
-                      className={classes.button}
-                    >
-                      {activeStep === steps.length - 1 ? "Place order" : "Next"}
-                    </Button>
-                  </div>
-                </React.Fragment>
-              )}
+                  </React.Fragment>
+                </Paper>
+              </main>
             </React.Fragment>
-          </Paper>
-        </main>
-      </React.Fragment>
+          </PrimarySearchAppBar>
+          <div></div>
+        </div>{" "}
+        <Footer />
+      </>
     );
   }
 }
 
-Checkout.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
+// Checkout.propTypes = {
+//   classes: PropTypes.object.isRequired,
+// };
 
-export default withStyles(styles)(Checkout);
+export default Checkout;

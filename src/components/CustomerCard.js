@@ -21,9 +21,9 @@ const ExpandMore = styled((props) => {
 })(({ theme, expand }) => ({
   transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
   marginLeft: "auto",
-  transition: theme.transitions.create("transform", {
-    duration: theme.transitions.duration.shortest,
-  }),
+  // transition: theme.transitions.create("transform", {
+  //   duration: theme.transitions.duration.shortest,
+  // }),
 }));
 
 export default function RecipeReviewCard({

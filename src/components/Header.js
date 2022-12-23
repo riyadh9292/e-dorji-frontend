@@ -1,7 +1,13 @@
 import * as React from "react";
-import { styled, useTheme } from "@mui/styles";
-import MuiDrawer from "@mui/material/Drawer";
+import { styled, useTheme } from "@mui/material/styles";
 import MuiAppBar from "@mui/material/AppBar";
+import { Link } from "react-router-dom";
+import Signup from "./Register";
+import Login from "./Login";
+import Modal from "@mui/material/Modal";
+import { ImCross } from "react-icons/im";
+import Box from "@mui/material/Box";
+import MuiDrawer from "@mui/material/Drawer";
 import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -17,27 +23,20 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
-import { Link } from "react-router-dom";
-
-import Signup from "./Register";
-import Login from "./Login";
-
-import Box from "@mui/material/Box";
-import Modal from "@mui/material/Modal";
-import { ImCross } from "react-icons/im";
 
 const drawerWidth = 240;
-// const style = {
-//   position: "absolute",
-//   top: "50%",
-//   left: "50%",
-//   transform: "translate(-50%, -50%)",
-//   width: 400,
-//   bgcolor: "background.paper",
-//   border: "2px solid #000",
-//   boxShadow: 24,
-//   p: 4,
-// };
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "600px",
+  bgcolor: "background.paper",
+  // border: "2px solid #eeeeee",
+  borderRadius: "20px",
+  // boxShadow: 24,
+  p: 4,
+};
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -104,19 +103,6 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: "600px",
-  bgcolor: "background.paper",
-  // border: "2px solid #eeeeee",
-  borderRadius: "20px",
-  // boxShadow: 24,
-  p: 4,
-};
-
 export default function MiniDrawer({ children }) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
@@ -130,8 +116,6 @@ export default function MiniDrawer({ children }) {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-
-  // console.log(openLogin, "open", "openRegister", openRegister);
 
   return (
     <>
@@ -331,35 +315,6 @@ export default function MiniDrawer({ children }) {
                 </ListItemButton>
               </ListItem>
             </Link>
-
-            {/* {[
-              "Designs",
-           
-              "See Out Clients",
-              "Success Story",
-              "Meet fashion experts",
-            ].map((text, index) => (
-              <ListItem key={text} disablePadding sx={{ display: "block" }}>
-                <ListItemButton
-                  sx={{
-                    minHeight: 48,
-                    justifyContent: open ? "initial" : "center",
-                    px: 2.5,
-                  }}
-                >
-                  <ListItemIcon
-                    sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : "auto",
-                      justifyContent: "center",
-                    }}
-                  >
-                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                  </ListItemIcon>
-                  <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-                </ListItemButton>
-              </ListItem>
-            ))} */}
           </List>
           <Divider />
           <List>
