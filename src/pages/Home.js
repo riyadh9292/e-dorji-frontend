@@ -5,6 +5,8 @@ import PrimarySearchAppBar from "../components/Header";
 import styled, { keyframes } from "styled-components";
 import { bounce } from "react-animations";
 import Footer from "../components/Footer";
+import { useSelector, useDispatch } from "react-redux";
+import { decrement, increment } from "../slices/counterSlice";
 
 const bounceAnimation = keyframes`${bounce}`;
 const BouncyDiv = styled.div`
@@ -12,6 +14,8 @@ const BouncyDiv = styled.div`
 `;
 
 export default function Home() {
+  const count = useSelector((state) => state.counter.value);
+  const dispatch = useDispatch();
   return (
     <>
       {" "}
@@ -43,13 +47,23 @@ export default function Home() {
           </div>
         </PrimarySearchAppBar>
         <div>
-          {/* <Button onClick={handleOpen}>Open modal</Button>
-  <Modal
-    open={open}
-    onClose={handleClose}
-    aria-labelledby="modal-modal-title"
-    aria-describedby="modal-modal-description"
-  > */}
+          <div>
+            <div>
+              <button
+                aria-label="Increment value"
+                onClick={() => dispatch(increment())}
+              >
+                Increment
+              </button>
+              <span>{count}</span>
+              <button
+                aria-label="Decrement value"
+                onClick={() => dispatch(decrement())}
+              >
+                Decrement
+              </button>
+            </div>
+          </div>
         </div>
       </div>
       <Footer />
