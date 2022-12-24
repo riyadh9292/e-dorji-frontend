@@ -133,7 +133,7 @@ export default function MiniDrawer({ children }) {
             onClick={() => setOpenRegister(false)}
             className="text-red-600 absolute right-8 cursor-pointer"
           />
-          <Signup />
+          <Signup setOpenRegister={setOpenRegister} />
         </Box>
       </Modal>
 
