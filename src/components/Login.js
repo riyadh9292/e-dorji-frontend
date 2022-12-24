@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Grid,
   Paper,
@@ -9,12 +9,13 @@ import {
   Typography,
   Link,
   Checkbox,
+  IconButton,
 } from "@mui/material";
 import LockOutlined from "@mui/icons-material/LockOutlined";
 import { useLazyQuery, useMutation, useQuery } from "@apollo/client";
 import { loginUserQuery } from "../quries/quries";
 
-const Login = () => {
+const Login = ({ setOpenLogin }) => {
   const paperStyle = {
     padding: 20,
     height: "70vh",
@@ -26,6 +27,39 @@ const Login = () => {
   const useremailRef = React.useRef();
   const userpasswordRef = React.useRef();
   const [getToken, { loading, data: token }] = useLazyQuery(loginUserQuery);
+
+  // snack bar
+  const [open, setOpen] = React.useState(false);
+  const [snackData, setSnackData] = React.useState("");
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
+  const action = (
+    <React.Fragment>
+      <Button color="secondary" size="small" onClick={handleClose}>
+        UNDO
+      </Button>
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={handleClose}
+      >
+        <span className="text-red-300 font-extrabold text-xl">X</span>
+        {/* <CloseIcon fontSize="small" /> */}
+      </IconButton>
+    </React.Fragment>
+  );
+  // end snack bar
   // const {
   //   loading,
   //   error,
@@ -33,7 +67,7 @@ const Login = () => {
   // } = useQuery(loginUserQuery, {
   //   variables: data,
   // });
-  if (token.login.token) {
+  if (token?.login?.token) {
     localStorage.setItem("token", JSON.stringify(token.login.token));
   }
 
@@ -58,6 +92,14 @@ const Login = () => {
     //   }, "2000");
     // }
   };
+
+  useEffect(() => {
+    handleClick();
+    setSnackData("registered successfully");
+    setTimeout(() => {
+      setOpenLogin(false);
+    }, "2000");
+  }, []);
   return (
     <Grid className="w-full">
       <Paper className="shadow-none" style={paperStyle}>
