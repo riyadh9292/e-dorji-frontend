@@ -97,7 +97,7 @@ const Signup = ({ setOpenRegister }) => {
     }
   };
 
-  console.log({ user, userLoading, userSavingError });
+  // console.log({ user, userLoading, userSavingError });
   return (
     <>
       <Snackbar
