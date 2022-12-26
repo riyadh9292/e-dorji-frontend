@@ -2,13 +2,53 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <div className=" w-full">
+    <div className=" text-white w-full">
       <section className="red">
-        <h1>Nice Curves!</h1>
-        <p>
-          A website is like a road. The more curves it has the more interesting
-          it is.
-        </p>
+      <div className="pt-10">
+      <h1 className="text-white font-bold text-[24px]">Nice Curves!</h1>
+      <p>
+        A website is like a road. The more curves it has the more interesting
+        it is.
+      </p>
+      <div className="grid rid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
+      <div className="mb-5">
+      <h4>company</h4>
+      A123 Lost street<br></br>
+      chandigarh,PB 243233<br></br>
+      india <br></br>
+      <strong>Phone:</strong>+1 232 2321 4543 <br></br>
+      <strong>Email:</strong>info@example.com<br></br>
+      </div>
+      <div className="mb-5">
+        <h4>useful links</h4>
+       <ul className="text-gray-500">
+          <li className="pb-4"><i className="fa fa.chevron.right"></i> Home</li>
+          <li className="pb-4"><i className="fa fa.chevron.right"></i>About us</li>
+          <li className="pb-4"><i className="fa fa.chevron.right"></i>Services</li>
+          <li className="pb-4"><i className="fa fa.chevron.right"></i>Terms of Services </li>
+          <li className="pb-4"><i className="fa fa.chevron.right"></i>Privacy policy</li>
+        </ul>
+      </div>
+      <div className="mb-5">
+        <h4>Services</h4>
+       <ul className="text-gray-500">
+          <li className="pb-4"><i className="fa fa.chevron.right"></i> web design</li>
+          <li className="pb-4"><i className="fa fa.chevron.right"></i>web Development</li>
+          <li className="pb-4"><i className="fa fa.chevron.right"></i>Project Management</li>
+          <li className="pb-4"><i className="fa fa.chevron.right"></i>Marketing </li>
+          <li className="pb-4"><i className="fa fa.chevron.right"></i>Graphic design</li>
+       </ul>
+      </div> 
+      <div className="mb-5">
+        <h4 className="pb-4">Joint our Newsletter</h4>
+        <p className="text-gray-500">Join our 25,000+ others and never miss out on tips,tutorials and more</p>
+        <form className=" flex flex-row flex-wrap">
+          <input type="text" className="text-gray-500 w-2/3 p-2 focus-border-yellow-500" placeholder="email@example.com"></input>
+          <button className="p-2 w-1/3 bg-yellow-500 text-white hover:bg-yellow-600">subscribe</button> 
+        </form>
+      </div>
+      </div>
+       
 
         <div className="wave">
           <svg
@@ -23,7 +63,25 @@ export default function Footer() {
             ></path>
           </svg>
         </div>
-      </section>
+      </div>
+        </section>
+        <div className="w-full bg-gray-900 text-gray-500 px-10">
+          <div className="max-w-7xl flex flex.col sm: row py-4 mx-auto">
+            <div className="text-center">
+              <div>
+              copyright <strong><span>company</span></strong>.All Rights Reserved
+                </div>
+              </div > 
+              Designed by <a href="#" className="text-yellow-500">TailwindCss</a>
+           </div>
+        </div> 
+          <div>
+             <a href="#" className=" w-10 h-10 rounded-full bg-yellow-500 hover:bg-yellow-600 mx-1 inline block pt-1"><i className="fa fa-twitter"></i></a>
+             <a href="#" className=" w-10 h-10 rounded-full bg-yellow-500 hover:bg-yellow-600 mx-1 inline block pt-1"><i className="fa fa-instagram"></i></a>
+             <a href="#" className=" w-10 h-10 rounded-full bg-yellow-500 hover:bg-yellow-600 mx-1 inline block pt-1"><i className="fa fa-facebook"></i></a>
+             <a href="#" className=" w-10 h-10 rounded-full bg-yellow-500 hover:bg-yellow-600 mx-1 inline block pt-1"><i className="fa fa-skype"></i></a>
+             <a href="#" className=" w-10 h-10 rounded-full bg-yellow-500 hover:bg-yellow-600 mx-1 inline block pt-1"><i className="fa fa-linkedin"></i></a>
+          </div>
     </div>
   );
 }
