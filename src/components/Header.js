@@ -23,6 +23,10 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
+import CovidTerms from "./covid/CovidTerms";
+import Badge from "@mui/material/Badge";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { useSelector } from "react-redux";
 
 const drawerWidth = 240;
 const style = {
@@ -108,6 +112,14 @@ export default function MiniDrawer({ children }) {
   const [open, setOpen] = React.useState(true);
   const [openLogin, setOpenLogin] = React.useState(false);
   const [openRegister, setOpenRegister] = React.useState(false);
+  const StyledBadge = styled(Badge)(({ theme }) => ({
+    "& .MuiBadge-badge": {
+      right: -3,
+      top: 13,
+      border: `2px solid #f39422`,
+      padding: "0 4px",
+    },
+  }));
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -116,9 +128,13 @@ export default function MiniDrawer({ children }) {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+  // src/pages/Cart.js
+  const cart = useSelector((state) => state.cart);
+  console.log(cart.cart.length, "cart");
 
   return (
     <>
+      <CovidTerms />
       <Modal
         open={openRegister}
         onClose={() => {
@@ -174,6 +190,21 @@ export default function MiniDrawer({ children }) {
                 E-Doiji
               </Typography>
               <div className="flex items-center gap-10">
+                <IconButton aria-label="cart">
+                  <StyledBadge
+                    badgeContent={cart.cart.length ? cart.cart.length : "0"}
+                    color={"warning"}
+                  >
+                    <ShoppingCartIcon className="text-white" />
+                  </StyledBadge>
+                </IconButton>
+                <Link to="/about">
+                  <span className="cursor-pointer">About US</span>
+                </Link>
+                <Link to="/contact">
+                  <span className="cursor-pointer">Contact US</span>
+                </Link>
+
                 <span
                   className="cursor-pointer"
                   onClick={() => setOpenLogin(true)}

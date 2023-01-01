@@ -1,0 +1,34 @@
+.parallax {
+  /* The image used */
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWkYlJR6UGDbnStXYP3He4G3s6fpFtq4fBGp3e-ewqiWH8P8dpluqRsn2dmV5ptqIa1iY&usqp=CAU");
+
+  /* Set a specific height */
+  min-height: 500px;
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.parallax-content {
+  height: 300px;
+  font-size: 36px;
+}
+.honeymoon-title {
+  color: #f39422;
+}
+.booking-button {
+  margin-top: 10px;
+  padding: 12px 25px;
+  border-radius: 2rem;
+  background-color: #f39422;
+  color: white;
+}
+.booking-button:hover {
+  color: #f39422;
+  background-color: white;
+}
+.honeymoon-conditions {
+  font-size: 32px;
+}

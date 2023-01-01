@@ -1,0 +1,10 @@
+.covid-terms {
+  height: 50px !important;
+  width: 100vw !important;
+  z-index: 10000000 !important;
+  background: #f39422 !important;
+}
+.travel-guide:hover {
+  text-decoration: underline !important;
+  cursor: pointer !important;
+}

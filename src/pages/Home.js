@@ -7,9 +7,10 @@ import { bounce } from "react-animations";
 import Footer from "../components/Footer";
 import { useSelector, useDispatch } from "react-redux";
 import { decrement, increment } from "../slices/counterSlice";
+import Paralax from "../components/paralax/Paralax";
 
 const bounceAnimation = keyframes`${bounce}`;
-const BouncyDiv = styled.div`
+export const BouncyDiv = styled.div`
   animation: 2s ${bounceAnimation} infinite;
 `;
 
@@ -29,7 +30,7 @@ export default function Home() {
             <div>
               <BouncyDiv>
                 <h1 className="text-[40px] text-[#1976d2] font-bold tracking-wide capitalize pb-12">
-                  OUR DELIGHTFUL CLIENTS
+                  BE OUR DELIGHTFUL CLIENTS
                 </h1>
               </BouncyDiv>
 
@@ -39,12 +40,13 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="w-full grid grid-cols-4 pt-10">
+          <div className="w-full grid grid-cols-4 py-10">
             <RecipeReviewCard imagePath="https://blog.hubspot.com/hs-fs/hubfs/custoemr%20success%20manager.jpg?width=595&height=400&name=custoemr%20success%20manager.jpg" />
             <RecipeReviewCard imagePath="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtzr8CUUjwt9NlU511deSB1qYqNFPCgNvrOCPvNYVVMPnUrGkR6CuMG8XwbCIqmqIEQh8&usqp=CAU" />
             <RecipeReviewCard imagePath="https://blog.hubspot.com/hs-fs/hubfs/custoemr%20success%20manager.jpg?width=595&height=400&name=custoemr%20success%20manager.jpg" />
             <RecipeReviewCard imagePath="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtzr8CUUjwt9NlU511deSB1qYqNFPCgNvrOCPvNYVVMPnUrGkR6CuMG8XwbCIqmqIEQh8&usqp=CAU" />
           </div>
+          <Paralax />
         </PrimarySearchAppBar>
         <div>
           <div>
