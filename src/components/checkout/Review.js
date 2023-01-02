@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Grid, List, ListItem, ListItemText, Typography } from "@mui/material";
 import PropTypes from "prop-types"; // ES6
+import { useSelector } from "react-redux";
 
-const products = [
-  { name: "Product 1", desc: "A nice thing", price: "$9.99" },
-  { name: "Product 2", desc: "Another thing", price: "$3.45" },
-  { name: "Product 3", desc: "Something else", price: "$6.51" },
-  { name: "Product 4", desc: "Best thing of all", price: "$14.11" },
-  { name: "Shipping", desc: "", price: "Free" },
-];
+// const products = [
+//   { name: "Product 1", desc: "A nice thing", price: "$9.99" },
+//   { name: "Product 2", desc: "Another thing", price: "$3.45" },
+//   { name: "Product 3", desc: "Something else", price: "$6.51" },
+//   { name: "Product 4", desc: "Best thing of all", price: "$14.11" },
+//   { name: "Shipping", desc: "", price: "Free" },
+// ];
 const addresses = [
   "1 Material-UI Drive",
   "Reactville",
@@ -36,6 +37,25 @@ const styles = (theme) => ({
 });
 
 function Review(props) {
+  const [products, setProducts] = useState([]);
+  const [total, setTotal] = useState(0);
+  const cart = useSelector((state) => state.cart);
+  const calculateTotal = () => {
+    console.log(cart.cart, "cart.cart");
+    const initialValue = 0;
+    const sum = cart.cart.reduce(
+      (accumulator, currentValue) => accumulator + currentValue.quantity * 10,
+      0
+    );
+
+    setTotal(sum);
+  };
+  useEffect(() => {
+    setProducts(cart.cart);
+    calculateTotal();
+  }, []);
+  console.log(cart, "..cart");
+
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -43,15 +63,17 @@ function Review(props) {
       </Typography>
       <List disablePadding>
         {products.map((product) => (
-          <ListItem className="{.listItem}" key={product.name}>
-            <ListItemText primary={product.name} secondary={product.desc} />
-            <Typography variant="body2">{product.price}</Typography>
+          <ListItem className="{.listItem}" key={product.id}>
+            <ListItemText primary={product.title} secondary={product.desc} />
+            <Typography variant="body2">
+              {10} x {product.quantity}
+            </Typography>
           </ListItem>
         ))}
         <ListItem className="{.listItem}">
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" className="{.total}">
-            $34.06
+            {total}
           </Typography>
         </ListItem>
       </List>

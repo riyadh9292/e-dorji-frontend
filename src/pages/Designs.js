@@ -61,7 +61,7 @@ export default function Designs() {
         // setOpenLogin={setOpenLogin}
         // setOpenRegister={setOpenRegister}
         >
-          <div className="my-20 grid grid-cols-4 gap-10">
+          <div className="my-20 grid grid-cols-5 gap-10">
             {designs?.map((design) => {
               return (
                 <div className="" key={design._id}>

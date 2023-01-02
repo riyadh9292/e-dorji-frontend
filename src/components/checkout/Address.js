@@ -13,8 +13,8 @@ function AddressForm() {
       <Typography variant="h6" gutterBottom>
         Shipping address
       </Typography>
-      <Grid container spacing={24}>
-        <Grid item xs={12} sm={6}>
+      <Grid>
+        <Grid>
           <TextField
             required
             id="firstName"
@@ -24,7 +24,7 @@ function AddressForm() {
             autoComplete="fname"
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid>
           <TextField
             required
             id="lastName"
@@ -34,7 +34,7 @@ function AddressForm() {
             autoComplete="lname"
           />
         </Grid>
-        <Grid item xs={12}>
+        <Grid>
           <TextField
             required
             id="address1"
@@ -44,7 +44,7 @@ function AddressForm() {
             autoComplete="billing address-line1"
           />
         </Grid>
-        <Grid item xs={12}>
+        <Grid>
           <TextField
             id="address2"
             name="address2"
@@ -53,7 +53,7 @@ function AddressForm() {
             autoComplete="billing address-line2"
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item>
           <TextField
             required
             id="city"
@@ -63,7 +63,7 @@ function AddressForm() {
             autoComplete="billing address-level2"
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item>
           <TextField
             id="state"
             name="state"
@@ -71,7 +71,7 @@ function AddressForm() {
             fullWidth
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item>
           <TextField
             required
             id="zip"
@@ -81,7 +81,7 @@ function AddressForm() {
             autoComplete="billing postal-code"
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item>
           <TextField
             required
             id="country"
@@ -91,7 +91,7 @@ function AddressForm() {
             autoComplete="billing country"
           />
         </Grid>
-        <Grid item xs={12}>
+        <Grid>
           <FormControlLabel
             control={
               <Checkbox color="secondary" name="saveAddress" value="yes" />

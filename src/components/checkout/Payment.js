@@ -11,17 +11,17 @@ function Payment() {
       <Typography variant="h6" gutterBottom>
         Payment method
       </Typography>
-      <Grid container spacing={24}>
-        <Grid item xs={12} md={6}>
+      <Grid>
+        <Grid>
           <TextField required id="cardName" label="Name on card" fullWidth />
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid>
           <TextField required id="cardNumber" label="Card number" fullWidth />
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid>
           <TextField required id="expDate" label="Expiry date" fullWidth />
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid>
           <TextField
             required
             id="cvv"

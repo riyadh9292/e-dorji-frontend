@@ -107,54 +107,56 @@ class Checkout extends React.Component {
             <React.Fragment>
               <CssBaseline />
 
-              <main className={""}>
-                <Paper className={""}>
-                  <Typography component="h1" variant="h4" align="center">
-                    Checkout
-                  </Typography>
-                  <Stepper activeStep={activeStep} className={""}>
-                    {steps.map((label) => (
-                      <Step key={label}>
-                        <StepLabel>{label}</StepLabel>
-                      </Step>
-                    ))}
-                  </Stepper>
-                  <React.Fragment>
-                    {activeStep === steps.length ? (
-                      <React.Fragment>
-                        <Typography variant="h5" gutterBottom>
-                          Thank you for your order.
-                        </Typography>
-                        <Typography variant="subtitle1">
-                          Your order number is #2001539. We have emailed your
-                          order confirmation, and will send you an update when
-                          your order has shipped.
-                        </Typography>
-                      </React.Fragment>
-                    ) : (
-                      <React.Fragment>
-                        {getStepContent(activeStep)}
-                        <div className={""}>
-                          {activeStep !== 0 && (
-                            <Button onClick={this.handleBack} className={""}>
-                              Back
+              <main className=" flex justify-center">
+                <div className="w-[80%] ">
+                  <Paper className={"px-[30px] py-10"}>
+                    <Typography component="h1" variant="h4" align="center">
+                      Checkout
+                    </Typography>
+                    <Stepper activeStep={activeStep} className={""}>
+                      {steps.map((label) => (
+                        <Step key={label}>
+                          <StepLabel>{label}</StepLabel>
+                        </Step>
+                      ))}
+                    </Stepper>
+                    <React.Fragment>
+                      {activeStep === steps.length ? (
+                        <React.Fragment>
+                          <Typography variant="h5" gutterBottom>
+                            Thank you for your order.
+                          </Typography>
+                          <Typography variant="subtitle1">
+                            Your order number is #2001539. We have emailed your
+                            order confirmation, and will send you an update when
+                            your order has shipped.
+                          </Typography>
+                        </React.Fragment>
+                      ) : (
+                        <React.Fragment>
+                          {getStepContent(activeStep)}
+                          <div className={""}>
+                            {activeStep !== 0 && (
+                              <Button onClick={this.handleBack} className={""}>
+                                Back
+                              </Button>
+                            )}
+                            <Button
+                              variant="contained"
+                              color="primary"
+                              onClick={this.handleNext}
+                              className={""}
+                            >
+                              {activeStep === steps.length - 1
+                                ? "Place order"
+                                : "Next"}
                             </Button>
-                          )}
-                          <Button
-                            variant="contained"
-                            color="primary"
-                            onClick={this.handleNext}
-                            className={""}
-                          >
-                            {activeStep === steps.length - 1
-                              ? "Place order"
-                              : "Next"}
-                          </Button>
-                        </div>
-                      </React.Fragment>
-                    )}
-                  </React.Fragment>
-                </Paper>
+                          </div>
+                        </React.Fragment>
+                      )}
+                    </React.Fragment>
+                  </Paper>
+                </div>
               </main>
             </React.Fragment>
           </PrimarySearchAppBar>
