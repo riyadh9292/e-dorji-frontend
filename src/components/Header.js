@@ -130,7 +130,6 @@ export default function MiniDrawer({ children }) {
   };
   // src/pages/Cart.js
   const cart = useSelector((state) => state.cart);
-  console.log(cart.cart.length, "cart");
 
   return (
     <>
@@ -256,7 +255,7 @@ export default function MiniDrawer({ children }) {
                     <InboxIcon />
                   </ListItemIcon>
                   <ListItemText
-                    primary="Designs"
+                    primary="Products"
                     sx={{ opacity: open ? 1 : 0 }}
                   />
                 </ListItemButton>

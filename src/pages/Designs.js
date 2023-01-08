@@ -61,7 +61,7 @@ export default function Designs() {
         // setOpenLogin={setOpenLogin}
         // setOpenRegister={setOpenRegister}
         >
-          <div className="my-20 grid grid-cols-5 gap-10">
+          <div className="my-20 grid grid-cols-4 gap-10">
             {designs?.map((design) => {
               return (
                 <div className="" key={design._id}>
@@ -71,26 +71,28 @@ export default function Designs() {
             })}
           </div>
           Designs designs table
-          <form onSubmit={submitHandler}>
-            <div className="flex items-center gap-x-20">
-              <label>title</label>
-              <input
-                name="title"
-                onChange={(e) => setTitle(e.target.value)}
-                className="focus:outline-none border border-[#e6e6e6] "
-              />
-            </div>
-            <div className="flex items-center gap-x-20">
-              <label>image</label>
-              <input
-                type="file"
-                name="image"
-                onChange={(e) => setImage(e.target.files[0])}
-                className="focus:outline-none border border-[#e6e6e6] "
-              />
-            </div>
-            <button type="submit">add</button>
-          </form>
+          <div className="w-full flex justify-center">
+            <form onSubmit={submitHandler}>
+              <div className="flex items-center gap-x-20">
+                <label>title</label>
+                <input
+                  name="title"
+                  onChange={(e) => setTitle(e.target.value)}
+                  className="focus:outline-none border border-[#e6e6e6] "
+                />
+              </div>
+              <div className="flex items-center gap-x-20">
+                <label>image</label>
+                <input
+                  type="file"
+                  name="image"
+                  onChange={(e) => setImage(e.target.files[0])}
+                  className="focus:outline-none border border-[#e6e6e6] "
+                />
+              </div>
+              <button type="submit">add</button>
+            </form>
+          </div>
         </PrimarySearchAppBar>
         <div>
           {/* <Button onClick={handleOpen}>Open modal</Button>

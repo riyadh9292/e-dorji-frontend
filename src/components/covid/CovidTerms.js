@@ -4,7 +4,7 @@ import "./CovidTerms.css";
 
 const CovidTerms = () => {
   return (
-    <div className="fixed bg-[#f39422] text-white top-0 left-[30vw] z-[2000] px-10">
+    <div className="fixed bg-[#f39422] text-white top-0 left-[25vw] z-[2000] px-10">
       <p className="flex items-center ">
         <AiFillInfoCircle />
         &nbsp; Your safety is our top priority &nbsp;
