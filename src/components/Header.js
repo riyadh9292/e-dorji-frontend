@@ -27,6 +27,7 @@ import CovidTerms from "./covid/CovidTerms";
 import Badge from "@mui/material/Badge";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useSelector } from "react-redux";
+import { useClearUser, useToken } from "../hooks/useAuth";
 
 const drawerWidth = 240;
 const style = {
@@ -112,6 +113,7 @@ export default function MiniDrawer({ children }) {
   const [open, setOpen] = React.useState(true);
   const [openLogin, setOpenLogin] = React.useState(false);
   const [openRegister, setOpenRegister] = React.useState(false);
+  const loggedIn = useToken();
   const StyledBadge = styled(Badge)(({ theme }) => ({
     "& .MuiBadge-badge": {
       right: -3,
@@ -128,8 +130,16 @@ export default function MiniDrawer({ children }) {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    // const logout = useClearUser();
+    window.location.reload();
+    console.log("logout success");
+  };
   // src/pages/Cart.js
   const cart = useSelector((state) => state.cart);
+  // console.log("loggedIn", loggedIn);
 
   return (
     <>
@@ -204,18 +214,26 @@ export default function MiniDrawer({ children }) {
                   <span className="cursor-pointer">Contact US</span>
                 </Link>
 
-                <span
-                  className="cursor-pointer"
-                  onClick={() => setOpenLogin(true)}
-                >
-                  Login
-                </span>
-                <span
-                  className="cursor-pointer"
-                  onClick={() => setOpenRegister(true)}
-                >
-                  Registration
-                </span>
+                {!loggedIn ? (
+                  <>
+                    <span
+                      className="cursor-pointer"
+                      onClick={() => setOpenLogin(true)}
+                    >
+                      Login
+                    </span>
+                    <span
+                      className="cursor-pointer"
+                      onClick={() => setOpenRegister(true)}
+                    >
+                      Registration
+                    </span>
+                  </>
+                ) : (
+                  <span className="cursor-pointer" onClick={handleLogout}>
+                    Log Out
+                  </span>
+                )}
               </div>
             </div>
           </Toolbar>

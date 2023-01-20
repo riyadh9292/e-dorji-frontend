@@ -210,3 +210,6 @@ section {
 .mydivouter:hover .mybuttonoverlap {
   display: block;
 }
+/* .MuiDrawer-root .MuiPaper-root {
+  width: 340px !important;
+} */

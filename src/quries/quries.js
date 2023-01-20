@@ -12,6 +12,7 @@ export const loginUserQuery = gql`
   query ($email: String!, $password: String!) {
     login(email: $email, password: $password) {
       token
+      role
     }
   }
 `;

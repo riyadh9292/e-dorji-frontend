@@ -3,8 +3,12 @@ import PrimarySearchAppBar from "../components/Header";
 import axios from "axios";
 import Footer from "../components/Footer";
 import DesignCard from "../components/DesignCard";
+import { useNavigate } from "react-router-dom";
+import { useToken } from "../hooks/useAuth";
 
 export default function Designs() {
+  let navigate = useNavigate();
+
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
   const [designs, setDesigns] = useState([]);
@@ -50,9 +54,14 @@ export default function Designs() {
     //     console.log(err, "err");
     //   });
   };
+  const LoggedIn = useToken();
   useEffect(() => {
-    getDesigns();
-  }, []);
+    if (!LoggedIn) {
+      return navigate("/");
+    } else {
+      getDesigns();
+    }
+  }, [LoggedIn]);
   console.log("designs", designs);
   return (
     <>
