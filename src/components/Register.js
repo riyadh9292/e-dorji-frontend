@@ -91,12 +91,11 @@ const Signup = ({ setOpenRegister, setOpenLogin }) => {
     if (data) {
       handleClick();
       setSnackData("registered successfully");
+      setOpenRegister(false);
       setTimeout(() => {
-        setOpenRegister(false);
-      }, "2000");
-      setOpenLogin(true);
+        setOpenLogin(true);
+      }, 1000);
     }
-    
   };
 
   // console.log({ user, userLoading, userSavingError });
