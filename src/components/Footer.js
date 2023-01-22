@@ -2,17 +2,17 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <div className=" text-white w-full">
+    <div className=" text-[#ffffff] w-full">
       <section className="red">
         <div className="pt-10">
-          <h1 className="text-white font-bold text-[24px]">Nice Curves!</h1>
+          <h1 className="text-[#ffffff] font-bold text-[24px]">Nice Curves!</h1>
           <p className="invisible">
             A website is like a road. The more curves it has the more
             interesting it is.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 pl-[270px] pr-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 pl-[270px] pr-20">
             <div className="mb-5">
-              <h4 className="py-2 text-xl font-bold">company</h4>
+              <h4 className="py-2 text-xl font-bold text-[#ffffff]">Company</h4>
               A123 Lost street<br></br>
               chandigarh,PB 243233<br></br>
               india <br></br>
@@ -20,8 +20,8 @@ export default function Footer() {
               <strong>Email:</strong>info@example.com<br></br>
             </div>
             <div className="mb-5">
-              <h4 className="py-2 text-xl font-bold">useful links</h4>
-              <ul className="text-white">
+              <h4 className="py-2 text-xl font-bold">Useful links</h4>
+              <ul className="text-[#ffffff]">
                 <li className="pb-4">
                   <i className="fa fa.chevron.right"></i> Home
                 </li>
@@ -41,40 +41,40 @@ export default function Footer() {
             </div>
             <div className="mb-5">
               <h4 className="py-2 text-xl font-bold">Services</h4>
-              <ul className="text-white">
+              <ul className="text-[#ffffff]">
                 <li className="pb-4">
-                  <i className="fa fa.chevron.right"></i> web design
+                  <i className="fa fa.chevron.right"></i> Ready Suits
                 </li>
                 <li className="pb-4">
-                  <i className="fa fa.chevron.right"></i>web Development
+                  <i className="fa fa.chevron.right"></i>School & College dress
                 </li>
                 <li className="pb-4">
-                  <i className="fa fa.chevron.right"></i>Project Management
+                  <i className="fa fa.chevron.right"></i>Stylish or formal shirt
                 </li>
                 <li className="pb-4">
                   <i className="fa fa.chevron.right"></i>Marketing{" "}
                 </li>
                 <li className="pb-4">
-                  <i className="fa fa.chevron.right"></i>Graphic design
+                  <i className="fa fa.chevron.right"></i>Many More
                 </li>
               </ul>
             </div>
             <div className="mb-5">
               <h4 className="pb-4 py-2 text-xl font-bold">
-                Joint our Newsletter
+                Join our Newsletter
               </h4>
-              <p className="text-white">
+              <p className="text-[#ffffff]">
                 Join our 25,000+ others and never miss out on tips,tutorials and
                 more
               </p>
               <form className=" flex flex-row flex-wrap">
                 <input
                   type="text"
-                  className="text-white w-2/3 p-2 focus-border-yellow-500"
+                  className="text-[#ffffff] w-2/3 p-2 focus-border-yellow-500"
                   placeholder="email@example.com"
                 ></input>
-                <button className="p-2 w-1/3 bg-yellow-500 text-white hover:bg-yellow-600">
-                  subscribe
+                <button className="p-2 w-1/3 bg-primary text-[#ffffff] hover:bg-yellow-600 font-extrabold">
+                  Subscribe
                 </button>
               </form>
             </div>
@@ -95,21 +95,13 @@ export default function Footer() {
           </div>
         </div>
       </section>
-      <div className="w-full bg-gray-900 text-white px-10">
-        <div className="max-w-7xl flex flex-col sm: row py-4 mx-auto">
-          <div className="text-right">
-            <div className="invisible">
-              copyright{" "}
-              <strong>
-                <span>company</span>
-              </strong>
-              .All Rights Reserved
-            </div>
+      <div className="w-full bg-gray-900 text-[#ffffff] px-10 h-10">
+        <div className="max-w-7xl flex flex-col sm:row py-4 mx-auto">
+          <div className="text-center">
+            <a href="#" className="text-primary">
+              Developed By Tasnuva
+            </a>
           </div>
-          Designed by{" "}
-          <a href="#" className="text-yellow-500">
-            TailwindCss
-          </a>
         </div>
       </div>
       {/* <div>

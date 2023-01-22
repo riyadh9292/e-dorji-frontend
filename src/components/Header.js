@@ -363,6 +363,35 @@ export default function MiniDrawer({ children }) {
                 </ListItemButton>
               </ListItem>
             </Link>
+            <Link to="/catalogue">
+              <ListItem
+                key="Catalogue"
+                disablePadding
+                sx={{ display: "block" }}
+              >
+                <ListItemButton
+                  sx={{
+                    minHeight: 48,
+                    justifyContent: open ? "initial" : "center",
+                    px: 2.5,
+                  }}
+                >
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : "auto",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <InboxIcon />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary="Catalogue"
+                    sx={{ opacity: open ? 1 : 0 }}
+                  />
+                </ListItemButton>
+              </ListItem>
+            </Link>
           </List>
           <Divider />
           <List>

@@ -6,35 +6,33 @@ import DesignCard from "../components/DesignCard";
 import { useNavigate } from "react-router-dom";
 import { useToken } from "../hooks/useAuth";
 
-export default function Designs() {
+export default function Catalogue() {
   let navigate = useNavigate();
 
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
   const [type, setType] = useState("");
-  const [description, setDescription] = useState("");
-  const [designs, setDesigns] = useState([]);
+  const [catalogue, setCatalogue] = useState([]);
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(e.target);
-    // console.log({ title, image });
+
     const formData = new FormData();
     formData.append("image", image);
     formData.append("title", title);
+    formData.append("productType", type);
     console.log(formData);
-    fetch("http://localhost:4000/designs/file-upload", {
+    fetch("http://localhost:4000/catalogue/file-upload", {
       method: "POST",
       body: formData,
     })
       .then((response) => response.json())
       .then((data) => {
-        fetch("http://localhost:4000/designs/", {
+        fetch("http://localhost:4000/catalogue/", {
           method: "PATCH",
           headers: { "Content-type": "application/json" },
           body: JSON.stringify({
-            id: data?.design?._id,
+            id: data?.catalogue?._id,
             title,
-            description,
             productType: type,
           }),
         })
@@ -46,30 +44,21 @@ export default function Designs() {
       });
   };
   const getDesigns = async () => {
-    const res = await axios.get("http://localhost:4000/designs/");
-    console.log(res, "designs");
-    setDesigns(res?.data?.design);
-    // fetch("http://localhost:4000/designs/", {
-    //   method: "GET",
-    //   headers: { "Content-type": "application/json" },
-    // })
-    //   .then((res) => {
-    //     setDesigns(res?.data);
-    //     console.log(res, "res from getting design");
-    //   })
-    //   .catch((err) => {
-    //     console.log(err, "err");
-    //   });
+    const res = await axios.get("http://localhost:4000/catalogue/");
+    console.log(res, "catalogue");
+    setCatalogue(res?.data?.design);
   };
   const LoggedIn = useToken();
-  useEffect(() => {
-    if (!LoggedIn) {
-      return navigate("/");
-    } else {
-      getDesigns();
-    }
-  }, [LoggedIn]);
-  console.log("designs", designs);
+  //   useEffect(() => {
+  //     if (!LoggedIn) {
+  //       return navigate("/");
+  //     } else {
+  //       getDesigns();
+  //     }
+  //   }, [LoggedIn]);
+
+  //   console.log(catalogue, "catalogue");
+
   return (
     <>
       <div className="App">
@@ -77,7 +66,7 @@ export default function Designs() {
         // setOpenLogin={setOpenLogin}
         // setOpenRegister={setOpenRegister}
         >
-          <div className="my-20 grid grid-cols-4 gap-10">
+          {/* <div className="my-20 grid grid-cols-4 gap-10">
             {designs?.map((design) => {
               return (
                 <div className="" key={design._id}>
@@ -85,8 +74,8 @@ export default function Designs() {
                 </div>
               );
             })}
-          </div>
-          Designs designs table
+          </div> */}
+          add catalogue
           <div className="w-full flex justify-center">
             <form onSubmit={submitHandler}>
               <div className="flex items-center gap-x-20">
@@ -94,6 +83,15 @@ export default function Designs() {
                 <input
                   name="title"
                   onChange={(e) => setTitle(e.target.value)}
+                  className="focus:outline-none border border-[#e6e6e6] "
+                />
+              </div>
+              <div className="flex items-center gap-x-20">
+                <label>image</label>
+                <input
+                  type="file"
+                  name="image"
+                  onChange={(e) => setImage(e.target.files[0])}
                   className="focus:outline-none border border-[#e6e6e6] "
                 />
               </div>
@@ -119,23 +117,6 @@ export default function Designs() {
                   onChange={(e) => setImage(e.target.files[0])}
                   className="focus:outline-none border border-[#e6e6e6] "
                 /> */}
-              </div>
-              <div className="flex items-center gap-x-20">
-                <label>Description</label>
-                <textarea
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                  className="focus:outline-none border border-[#e6e6e6] "
-                />
-              </div>
-              <div className="flex items-center gap-x-20">
-                <label>image</label>
-                <input
-                  type="file"
-                  name="image"
-                  onChange={(e) => setImage(e.target.files[0])}
-                  className="focus:outline-none border border-[#e6e6e6] "
-                />
               </div>
               <button type="submit">add</button>
             </form>
