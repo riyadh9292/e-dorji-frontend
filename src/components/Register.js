@@ -18,7 +18,7 @@ import FormLabel from "@mui/material/FormLabel";
 import Checkbox from "@mui/material/Checkbox";
 import { createUser } from "../quries/quries";
 import { useMutation } from "@apollo/client";
-const Signup = ({ setOpenRegister }) => {
+const Signup = ({ setOpenRegister, setOpenLogin }) => {
   const paperStyle = { padding: "30px 20px", width: 480, margin: "20px auto" };
   const headerStyle = { margin: 0 };
   const avatarStyle = { backgroundColor: "#1bbd7e" };
@@ -94,7 +94,9 @@ const Signup = ({ setOpenRegister }) => {
       setTimeout(() => {
         setOpenRegister(false);
       }, "2000");
+      setOpenLogin(true);
     }
+    
   };
 
   // console.log({ user, userLoading, userSavingError });

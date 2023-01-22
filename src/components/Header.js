@@ -113,6 +113,8 @@ export default function MiniDrawer({ children }) {
   const [open, setOpen] = React.useState(true);
   const [openLogin, setOpenLogin] = React.useState(false);
   const [openRegister, setOpenRegister] = React.useState(false);
+  const [regDone, setRegDone] = React.useState(false);
+
   const loggedIn = useToken();
   const StyledBadge = styled(Badge)(({ theme }) => ({
     "& .MuiBadge-badge": {
@@ -143,7 +145,7 @@ export default function MiniDrawer({ children }) {
 
   return (
     <>
-      <CovidTerms />
+      {/* <CovidTerms /> */}
       <Modal
         open={openRegister}
         onClose={() => {
@@ -158,7 +160,7 @@ export default function MiniDrawer({ children }) {
             onClick={() => setOpenRegister(false)}
             className="text-red-600 absolute right-8 cursor-pointer"
           />
-          <Signup setOpenRegister={setOpenRegister} />
+          <Signup setOpenRegister={setOpenRegister} setOpenLogin={setOpenLogin}/>
         </Box>
       </Modal>
 
@@ -177,6 +179,7 @@ export default function MiniDrawer({ children }) {
           />
           <Login setOpenLogin={setOpenLogin} />
         </Box>
+
       </Modal>
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
