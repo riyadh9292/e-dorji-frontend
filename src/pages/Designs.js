@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import DesignCard from "../components/DesignCard";
 import { useNavigate } from "react-router-dom";
 import { useToken } from "../hooks/useAuth";
+import { useSelector } from "react-redux";
 
 export default function Designs() {
   let navigate = useNavigate();
@@ -14,6 +15,7 @@ export default function Designs() {
   const [type, setType] = useState("");
   const [description, setDescription] = useState("");
   const [designs, setDesigns] = useState([]);
+  const user = useSelector((state) => state.user);
   const submitHandler = (e) => {
     e.preventDefault();
     console.log(e.target);
@@ -69,7 +71,7 @@ export default function Designs() {
       getDesigns();
     }
   }, [LoggedIn]);
-  console.log("designs", designs);
+
   return (
     <>
       <div className="App">
@@ -86,60 +88,67 @@ export default function Designs() {
               );
             })}
           </div>
-          Designs designs table
-          <div className="w-full flex justify-center">
-            <form onSubmit={submitHandler}>
-              <div className="flex items-center gap-x-20">
-                <label>title</label>
-                <input
-                  name="title"
-                  onChange={(e) => setTitle(e.target.value)}
-                  className="focus:outline-none border border-[#e6e6e6] "
-                />
-              </div>
-              <div className="flex items-center gap-x-20">
-                <label>type</label>
-                <select
-                  onChange={(event) => setType(event.target.value)}
-                  value={type}
-                >
-                  <option value="men wears">men wears</option>
-                  <option value="female wears">female wears</option>
-                  <option value="shirt">shirt</option>
-                  <option value="pant">pant</option>
-                  <option value="school dress male">school dress male</option>
-                  <option value="school dress female">
-                    school dress female
-                  </option>
-                  <option value="others">others</option>
-                </select>
-                {/* <input
+          {user?.email === "tothapi@gmail.com" && (
+            <div>
+              <h2 className="text-primary">Add Designs</h2>
+
+              <div className="w-full flex justify-center">
+                <form onSubmit={submitHandler}>
+                  <div className="flex items-center gap-x-20">
+                    <label>title</label>
+                    <input
+                      name="title"
+                      onChange={(e) => setTitle(e.target.value)}
+                      className="focus:outline-none border border-[#e6e6e6] "
+                    />
+                  </div>
+                  <div className="flex items-center gap-x-20">
+                    <label>type</label>
+                    <select
+                      onChange={(event) => setType(event.target.value)}
+                      value={type}
+                    >
+                      <option value="men wears">men wears</option>
+                      <option value="female wears">female wears</option>
+                      <option value="shirt">shirt</option>
+                      <option value="pant">pant</option>
+                      <option value="school dress male">
+                        school dress male
+                      </option>
+                      <option value="school dress female">
+                        school dress female
+                      </option>
+                      <option value="others">others</option>
+                    </select>
+                    {/* <input
                   type="file"
                   name="image"
                   onChange={(e) => setImage(e.target.files[0])}
                   className="focus:outline-none border border-[#e6e6e6] "
                 /> */}
+                  </div>
+                  <div className="flex items-center gap-x-20">
+                    <label>Description</label>
+                    <textarea
+                      value={description}
+                      onChange={(e) => setDescription(e.target.value)}
+                      className="focus:outline-none border border-[#e6e6e6] "
+                    />
+                  </div>
+                  <div className="flex items-center gap-x-20">
+                    <label>image</label>
+                    <input
+                      type="file"
+                      name="image"
+                      onChange={(e) => setImage(e.target.files[0])}
+                      className="focus:outline-none border border-[#e6e6e6] "
+                    />
+                  </div>
+                  <button type="submit">add</button>
+                </form>
               </div>
-              <div className="flex items-center gap-x-20">
-                <label>Description</label>
-                <textarea
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                  className="focus:outline-none border border-[#e6e6e6] "
-                />
-              </div>
-              <div className="flex items-center gap-x-20">
-                <label>image</label>
-                <input
-                  type="file"
-                  name="image"
-                  onChange={(e) => setImage(e.target.files[0])}
-                  className="focus:outline-none border border-[#e6e6e6] "
-                />
-              </div>
-              <button type="submit">add</button>
-            </form>
-          </div>
+            </div>
+          )}
         </PrimarySearchAppBar>
         <div>
           {/* <Button onClick={handleOpen}>Open modal</Button>

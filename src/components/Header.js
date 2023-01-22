@@ -175,7 +175,7 @@ export default function MiniDrawer({ children }) {
             onClick={() => setOpenLogin(false)}
             className="text-red-600 absolute right-8 cursor-pointer"
           />
-          <Login handleLogin={setOpenLogin} />
+          <Login setOpenLogin={setOpenLogin} />
         </Box>
       </Modal>
       <Box sx={{ display: "flex" }}>

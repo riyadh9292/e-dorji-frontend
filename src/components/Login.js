@@ -10,12 +10,16 @@ import {
   Link,
   Checkbox,
   IconButton,
+  Snackbar,
 } from "@mui/material";
 import LockOutlined from "@mui/icons-material/LockOutlined";
 import { useLazyQuery, useMutation, useQuery } from "@apollo/client";
 import { loginUserQuery } from "../quries/quries";
+import { useDispatch } from "react-redux";
+import { setter } from "../slices/userSlice";
 
 const Login = ({ setOpenLogin }) => {
+  const dispatch = useDispatch();
   const paperStyle = {
     padding: 20,
     height: "70vh",
@@ -26,7 +30,8 @@ const Login = ({ setOpenLogin }) => {
   const btnstyle = { margin: "8px 0" };
   const useremailRef = React.useRef();
   const userpasswordRef = React.useRef();
-  const [getToken, { loading, data: token }] = useLazyQuery(loginUserQuery);
+  const [getToken, { loading, data: token, error: userLoginError }] =
+    useLazyQuery(loginUserQuery);
 
   // snack bar
   const [open, setOpen] = React.useState(false);
@@ -70,6 +75,7 @@ const Login = ({ setOpenLogin }) => {
   if (token?.login?.token) {
     localStorage.setItem("token", JSON.stringify(token.login.token));
   }
+  console.log(token, "token");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -77,81 +83,94 @@ const Login = ({ setOpenLogin }) => {
       email: useremailRef.current.value,
       password: userpasswordRef.current.value,
     };
-    getToken({ variables: data });
+    const values = getToken({ variables: data });
 
-    // registerUser({ variables: data });
-    // if (userSavingError) {
-    //   handleClick();
-    //   setSnackData(userSavingError.message);
-    // }
-    // if (data) {
-    //   handleClick();
-    //   setSnackData("registered successfully");
-    //   setTimeout(() => {
-    //     setOpenRegister(false);
-    //   }, "2000");
-    // }
+    setSnackData("user not exists");
+
+    if (userLoginError) {
+      handleClick();
+      setSnackData(userLoginError.message);
+    }
+    if (data) {
+      handleClick();
+      console.log(data?.email, "data");
+      dispatch(setter({ email: data?.email }));
+      setSnackData("Logged IN Successfully");
+      setTimeout(() => {
+        setOpenLogin(false);
+      }, "2000");
+    }
   };
+  console.log(setOpenLogin, "setOpenLogin");
 
-  useEffect(() => {
-    handleClick();
-    setSnackData("registered successfully");
-    setTimeout(() => {
-      setOpenLogin(false);
-    }, "2000");
-  }, []);
+  // useEffect(() => {
+  //   handleClick();
+  //   setSnackData("registered successfully");
+  //   setTimeout(() => {
+  //     setOpenLogin(false);
+  //   }, "2000");
+  // }, []);
   return (
-    <Grid className="w-full">
-      <Paper className="shadow-none" style={paperStyle}>
-        <Grid align="center">
-          <Avatar style={avatarStyle}>
-            <LockOutlined />
-          </Avatar>
-          <h2 className="py-5 font-bold text-2xl">Sign In</h2>
-        </Grid>
-        <form onSubmit={handleSubmit}>
-          <TextField
-            inputRef={useremailRef}
-            label="Email"
-            placeholder="Enter email"
-            fullWidth
-            required
-            className="pb-5"
-          />
-          <TextField
-            inputRef={userpasswordRef}
-            label="Password"
-            placeholder="Enter password"
-            type="password"
-            fullWidth
-            required
-          />
-          <FormControlLabel
-            control={<Checkbox name="checkedB" color="primary" />}
-            label="Remember me"
-          />
-          <Button
-            type="submit"
-            color="primary"
-            variant="contained"
-            style={btnstyle}
-            fullWidth
-          >
-            Sign in
-          </Button>
-        </form>
+    <>
+      <Snackbar
+        open={open}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        message={snackData}
+        action={action}
+      />{" "}
+      <Grid className="w-full">
+        <Paper className="shadow-none" style={paperStyle}>
+          <Grid align="center">
+            <Avatar style={avatarStyle}>
+              <LockOutlined />
+            </Avatar>
+            <h2 className="py-5 font-bold text-2xl">Sign In</h2>
+          </Grid>
+          <form onSubmit={handleSubmit}>
+            <TextField
+              inputRef={useremailRef}
+              label="Email"
+              placeholder="Enter email"
+              fullWidth
+              required
+              className="pb-5"
+            />
+            <TextField
+              inputRef={userpasswordRef}
+              label="Password"
+              placeholder="Enter password"
+              type="password"
+              fullWidth
+              required
+            />
+            <FormControlLabel
+              control={<Checkbox name="checkedB" color="primary" />}
+              label="Remember me"
+            />
+            <Button
+              type="submit"
+              color="primary"
+              variant="contained"
+              style={btnstyle}
+              fullWidth
+            >
+              Sign in
+            </Button>
+          </form>
 
-        <div className="absolute bottom-20 right-20 text-right">
-          <Typography>
-            <Link href="#">Forgot password ?</Link>
-          </Typography>
-          <Typography>
-            {" "}
-            Do you have an account ?<Link href="#">Sign Up</Link>
-          </Typography>
-        </div>
-      </Paper>
-    </Grid>
+          <div className="absolute bottom-20 right-20 text-right">
+            <Typography>
+              <Link href="#">Forgot password ?</Link>
+            </Typography>
+            <Typography>
+              {" "}
+              Do you have an account ?<Link href="#">Sign Up</Link>
+            </Typography>
+          </div>
+        </Paper>
+      </Grid>
+    </>
   );
 };
 
