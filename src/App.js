@@ -11,6 +11,7 @@ import Designs from "./pages/Designs";
 import Checkout from "./pages/Checkout";
 import { useToken } from "./hooks/useAuth";
 import Catalogue from "./pages/Catalogue";
+import SingleDesign from "./pages/SingleDesign";
 
 function PrivateRoute({ children }) {
   // const Navigate = useNavigation();
@@ -39,6 +40,14 @@ function App() {
             element={
               <PrivateRoute>
                 <Designs />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/designs/:id"
+            element={
+              <PrivateRoute>
+                <SingleDesign />
               </PrivateRoute>
             }
           />

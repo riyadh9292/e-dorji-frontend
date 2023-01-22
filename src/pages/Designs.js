@@ -23,7 +23,7 @@ export default function Designs() {
     const formData = new FormData();
     formData.append("image", image);
     formData.append("title", title);
-    console.log(formData);
+    // console.log(formData);
     fetch("http://localhost:4000/designs/file-upload", {
       method: "POST",
       body: formData,
@@ -71,6 +71,7 @@ export default function Designs() {
       getDesigns();
     }
   }, [LoggedIn]);
+  console.log(user?.email, "email");
 
   return (
     <>

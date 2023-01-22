@@ -4,8 +4,10 @@ import { addToCart } from "../slices/cartSlice";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Modal from "@mui/material/Modal";
+import ForwardTwoToneIcon from "@mui/icons-material/ForwardTwoTone";
 import CatalogCard from "./catalogue/CatalogCard";
 
 const style = {
@@ -22,17 +24,19 @@ const style = {
 
 export default function DesignCard({ design }) {
   const dispatch = useDispatch();
+  let navigate = useNavigate();
   const id = design._id;
   const [open, setOpen] = React.useState(false);
   const [sizesForm, setSizesForm] = React.useState(false);
   const [selected, setSelected] = React.useState(null);
   const [catalogue, setCatalogue] = React.useState(null);
+
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const getCatalogues = async () => {
     const res = await axios.get("http://localhost:4000/catalogue/");
-    console.log(res?.data?.catalogue, "catalogue");
-    console.log(design?.productType, "design");
+    // console.log(res?.data?.catalogue, "catalogue");
+    // console.log(design?.productType, "design");
     setCatalogue(
       res?.data?.catalogue?.filter(
         (data) => data?.productType === design?.productType
@@ -42,7 +46,7 @@ export default function DesignCard({ design }) {
   useEffect(() => {
     getCatalogues();
   }, [design?._id]);
-  console.log(catalogue, "catalogue");
+  // console.log(catalogue, "catalogue");
   return (
     <div className="border-4 border-[#e6e6e6] rounded-t-lg">
       <Modal
@@ -156,14 +160,6 @@ export default function DesignCard({ design }) {
 
         <button
           onClick={handleOpen}
-          // onClick={() =>
-          //   dispatch(
-          //     addToCart({
-          //       id: design._id,
-          //       title: design.title,
-          //     })
-          //   )
-          // }
           className="bg-[#f39422] text-[#ffffff] font-bold text-lg p-2 px-6 rounded mybuttonoverlap btn btn-info"
         >
           Get now
@@ -175,10 +171,21 @@ export default function DesignCard({ design }) {
       >
         {design.title}
       </p>
-      <p className="p-2 text-center text-[20px] text-gray">
-        {design.description ||
-          "gahhsvad dwgghqwegwq d adbqwqwjhwgfewg  fwediuwhrhew"}
-      </p>
+      <div>
+        <p className="p-2 text-center text-base text-gray">
+          {design?.description?.length > 10
+            ? design?.description?.slice(0, 10) + "..."
+            : design?.description ||
+              "gahhsvad dwgghqwegwq d adbqwqwjhwgfewg  fwediuwhrhew"}
+        </p>
+        <div
+          onClick={() => navigate(`/designs/${design._id}`)}
+          className="flex justify-end"
+          title="Details"
+        >
+          <ForwardTwoToneIcon className="text-primary cursor-pointer w-[50px] font-extrabold " />
+        </div>
+      </div>
     </div>
   );
 }

@@ -8,7 +8,7 @@ export default function Experts() {
     <>
       <div className="App">
         <PrimarySearchAppBar>
-          <h1 className="text-4xl font-extrabold">Experts</h1>
+          <h1 className="text-4xl font-extrabold text-primary">Experts</h1>
         </PrimarySearchAppBar>
         <div className="pl-[300px]">
           <div className="flex items-start gap-4">
